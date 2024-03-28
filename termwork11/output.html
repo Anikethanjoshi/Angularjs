@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name and Branch Uppercase Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Uppercase Name and Branch Converter</h2>
+
+    <form id="nameBranchForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+
+        <label for="branch">Branch:</label>
+        <input type="text" id="branch" required>
+
+        <button type="button" onclick="convertToUppercase()">Convert to Uppercase</button>
+    </form>
+
+    <div id="resultContainer"></div>
+
+    <script>
+        function convertToUppercase() {
+            var nameInput = document.getElementById("name");
+            var branchInput = document.getElementById("branch");
+            var resultContainer = document.getElementById("resultContainer");
+
+            var name = nameInput.value.toUpperCase();
+            var branch = branchInput.value.toUpperCase();
+
+            resultContainer.innerHTML = "<p>Uppercase Name: " + name + "</p><p>Uppercase Branch: " + branch + "</p>";
+        }
+    </script>
+</body>
+</html>

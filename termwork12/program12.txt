@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Date Display</title>
+</head>
+<body>
+
+    <h2>Current Date</h2>
+    
+    <p>Default format: <span id="defaultFormat"></span></p>
+    <p>Full date: <span id="fullDate"></span></p>
+    <p>Short date: <span id="shortDate"></span></p>
+    <p>Medium date: <span id="mediumDate"></span></p>
+    <p>Long date: <span id="longDate"></span></p>
+    <p>ISO string: <span id="isoString"></span></p>
+
+    <script>
+        var currentDate = new Date();
+
+        document.getElementById('defaultFormat').innerText = currentDate.toString();
+        document.getElementById('fullDate').innerText = currentDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        document.getElementById('shortDate').innerText = currentDate.toLocaleDateString('en-US', { year: 'numeric', month: 'numeric', day: 'numeric' });
+        document.getElementById('mediumDate').innerText = currentDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        document.getElementById('longDate').innerText = currentDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        document.getElementById('isoString').innerText = currentDate.toISOString();
+    </script>
+
+</body>
+</html>
