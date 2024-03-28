@@ -1,0 +1,46 @@
+v<!DOCTYPE html>
+<html lang="en" ng-app="todoApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="TodoController">
+    <h2>Todo List</h2>
+
+    <form ng-submit="addTask()">
+        <label for="newTask">Add Task:</label>
+        <input type="text" id="newTask" ng-model="newTask" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <ul>
+        <li ng-repeat="task in tasks">
+            {{ task }}
+            <button ng-click="removeTask($index)">Remove</button>
+        </li>
+    </ul>
+</div>
+
+<script>
+    angular.module('todoApp', [])
+        .controller('TodoController', function ($scope) {
+            $scope.tasks = ['Task 1', 'Task 2', 'Task 3'];
+
+            $scope.addTask = function () {
+                if ($scope.newTask) {
+                    $scope.tasks.push($scope.newTask);
+                    $scope.newTask = '';
+                }
+            };
+
+            $scope.removeTask = function (index) {
+                $scope.tasks.splice(index, 1);
+            };
+        });
+</script>
+
+</body>
+</html>
