@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="itemApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Item App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="ItemController as ctrl">
+    <h2>Item List</h2>
+    
+    <ul>
+        <li ng-repeat="item in ctrl.items">
+            {{ item }} 
+            <button ng-click="ctrl.removeItem($index)">Remove</button>
+        </li>
+    </ul>
+
+    <form ng-submit="ctrl.addItem()">
+        <input type="text" ng-model="ctrl.newItem" placeholder="New Item" required>
+        <button type="submit">Add Item</button>
+    </form>
+</div>
+
+<script>
+    angular.module('itemApp', [])
+        .controller('ItemController', function () {
+            this.items = ['Item 1', 'Item 2', 'Item 3']; // default items
+            this.newItem = '';
+
+            this.addItem = function () {
+                if (this.newItem !== '') {
+                    this.items.push(this.newItem);
+                    this.newItem = '';
+                }
+            };
+
+            this.removeItem = function (index) {
+                this.items.splice(index, 1);
+            };
+        });
+</script>
+
+</body>
+</html>
