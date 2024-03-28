@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html ng-app="studentApp">
+
+<head>
+  <title>Student Details</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 50%;
+      margin: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+
+<body ng-controller="StudentController">
+
+  <h2>Student Details</h2>
+
+  <label>Enter the number of students: </label>
+  <input type="number" ng-model="numStudents" ng-change="updateStudentCount()" />
+
+  <p>Total Students: {{ studentCount }}</p>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>CGPA</th>
+    </tr>
+    <tr ng-repeat="student in students">
+      <td>{{ student.name }}</td>
+      <td>{{ student.cgpa }}</td>
+    </tr>
+  </table>
+
+  <script>
+    var app = angular.module('studentApp', []);
+
+    app.controller('StudentController', function ($scope) {
+      $scope.students = [];
+      $scope.studentCount = 0;
+
+      $scope.updateStudentCount = function () {
+        $scope.studentCount = $scope.numStudents || 0;
+        $scope.generateStudentDetails();
+      };
+
+      $scope.generateStudentDetails = function () {
+        $scope.students = [];
+
+        for (var i = 1; i <= $scope.numStudents; i++) {
+          $scope.students.push({
+            name: 'Student ' + i,
+            cgpa: (Math.random() * (4 - 2) + 2).toFixed(2) // Random CGPA between 2 and 4
+          });
+        }
+      };
+
+      // Initialize with default values
+      $scope.numStudents = 5;
+      $scope.updateStudentCount();
+    });
+  </script>
+
+</body>
+
+</html>
